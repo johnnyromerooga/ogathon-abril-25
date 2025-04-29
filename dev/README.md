@@ -1,6 +1,5 @@
 ![Logo OGA](https://github.com/johnnyromerooga/ogathon-abril-25/blob/main/imgs/logo-oga.png?raw=true)
 
-
 # 🦠 Reto 1 – Predicción de propagación vírica
 
 ## 🧾 1. Introducción
@@ -80,7 +79,197 @@ GET http://localhost:8080/challenges/solution-1?n=20
 
 > La respuesta debe ser el **valor numérico plano**, sin etiquetas ni estructuras adicionales.
 
-### 📚 Documentación de la API
+---
+
+## 🧪 4. Evaluación
+
+### 🎯 Objetivo específico
+
+Se solicita calcular el **número de patrones distintos** cuando la **distancia es igual a 91**.
+
+---
+
+# 🔐 Reto 2 – Cifrado mediante secuencias
+
+## 🧾 1. Introducción
+
+Para desarrollar un **sistema de cifrado**, se necesita implementar un **algoritmo** que **identifique los números enteros** que cumplan una característica específica.
+
+🔢 **Procedimiento**:
+
+Se forma una secuencia a partir de un número entero, donde cada elemento se calcula **sumando los cuadrados de los dígitos** del número anterior.
+
+### 📚 Ejemplos:
+
+- **44** → (4² + 4²) = **32** → (3² + 2²) = **13** → (1² + 3²) = **10** → (1² + 0²) = **1** → (1²) = **1** → …
+- **2** → 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 → …
+
+🔎 **Observación:**  
+Las cadenas que contienen **1** o **89** generan **ciclos**.
+
+---
+
+## 🎯 Objetivo del reto
+
+Desarrollar un algoritmo que **calcule el número de enteros menores o iguales** a un **máximo dado** que, al formar su secuencia, **terminen generando un ciclo con el número 89**.
+
+---
+
+## 📊 2. Datos
+
+Aquí tienes algunos ejemplos para probar tu algoritmo:
+
+| 🔢 Máximo | 🔄 N° de enteros que generan ciclos con 89 |
+|----------|--------------------------------------------|
+| 2        | 1                                          |
+| 7        | 2                                          |
+| 44       | 34                                         |
+| 85       | 70                                         |
+
+---
+
+## ⚙️ 3. Indicaciones técnicas
+
+Tu solución debe cumplir los siguientes requisitos:
+
+### 📡 API REST
+
+- Debe estar disponible vía **API REST** a través del siguiente **endpoint**:
+
+```
+GET http://localhost:8080/challenges/solution-2?n=
+```
+
+- 🔸 El parámetro `n` es el **máximo valor** para encontrar enteros menores o iguales que generan secuencias que contengan el número 89.
+
+### 📥 Ejemplo de uso
+
+**Solicitud:**
+
+```
+GET http://localhost:8080/challenges/solution-2?n=85
+```
+
+**Respuesta esperada:**
+
+```
+70
+```
+
+> 🧠 La respuesta debe ser el **valor numérico directo**, sin estructura JSON ni envoltorios adicionales.
+
+---
+
+## 🏆 4. Evaluación
+
+El **ganador del reto** será **la primera persona** que:
+
+- Implemente correctamente el **algoritmo** solicitado.
+- Informe del **resultado obtenido** para el caso:
+
+> **🔢 Máximo = 9100**
+
+---
+
+# ♻️ Reto 3 – Reciclaje efectivo
+
+## 🧾 1. Introducción
+
+Para desarrollar un **sistema de reciclaje**, se necesita implementar un **algoritmo** que **calcule los movimientos necesarios** para que los residuos queden **perfectamente separados**.
+
+### 🗑️ Tipos de residuos
+
+Los contenedores pueden contener mezclas de:
+
+- 🧪 Vidrio
+- 📦 Cartón
+- 🧴 Plástico
+
+---
+
+## 🎯 Objetivo del reto
+
+Calcular el **número mínimo de movimientos** necesarios para lograr que cada contenedor contenga **únicamente un tipo de residuo**.
+
+---
+
+## 📊 2. Datos
+
+### 📚 Ejemplo de distribución inicial:
+
+| Contenedor | Vidrio | Cartón | Plástico |
+|------------|--------|--------|----------|
+| 1          | 2      | 0      | 1        |
+| 2          | 0      | 3      | 1        |
+| 3          | 1      | 1      | 1        |
+
+🔎 **Resultado esperado:**  
+El **mínimo número de movimientos** para separar los residuos correctamente es **4**:
+
+- ➡️ Mover **1 plástico** del contenedor 1.
+- ➡️ Mover **1 plástico** del contenedor 2.
+- ➡️ Mover **1 vidrio** y **1 cartón** del contenedor 3.
+
+---
+
+## ⚙️ 3. Indicaciones técnicas
+
+Tu solución debe cumplir los siguientes requisitos:
+
+### 📡 API REST
+
+- Debe estar disponible vía **API REST** a través del siguiente **endpoint**:
+
+```
+POST http://localhost:8080/challenges/solution-3
+```
+
+- 🔸 El **Body** de la solicitud será una **matriz de enteros (int[][])**, donde:
+  - La **primera posición** representa el **contenedor**.
+  - La **segunda posición** representa el **tipo de residuo**.
+
+### 📥 Ejemplo de Body (caso anterior)
+
+```json
+[
+  [2, 0, 1],
+  [0, 3, 1],
+  [1, 1, 1]
+]
+```
+
+### 📤 Respuesta esperada
+
+Debe ser **directamente el valor numérico** que indica el **mínimo número de movimientos** necesarios.
+
+**Ejemplo de respuesta:**
+
+```
+4
+```
+
+> 🧠 La respuesta debe ser un **valor numérico simple**, sin estructuras JSON adicionales.
+
+---
+
+## 🏆 4. Evaluación
+
+El **ganador del reto** será **la primera persona** que:
+
+- ✅ Implemente correctamente el **algoritmo solicitado**.
+- 📣 Informe del **resultado obtenido** para el siguiente caso:
+
+| Contenedor | Vidrio | Cartón | Plástico |
+|------------|--------|--------|----------|
+| 1          | 1      | 3      | 2        |
+| 2          | 2      | 1      | 3        |
+| 3          | 3      | 2      | 1        |
+
+---
+
+# Indicaciones comunes
+
+## 📚 Documentación de la API
 
 - La API debe estar documentada mediante **OpenAPI** (por ejemplo, con **Swagger**).
 - Debe ser accesible desde:
@@ -95,7 +284,7 @@ http://localhost:8080/swagger
 
 La API deberá ser **desplegable en un contenedor Docker**, escuchando en el **puerto 8080**.
 
-### 📁 Estructura del repositorio
+## 📁 Estructura del repositorio
 
 El repositorio debe tener la siguiente estructura:
 
@@ -110,7 +299,7 @@ ogathon/
 
 ---
 
-### ⚙️ Comandos de construcción y despliegue
+## ⚙️ Comandos de construcción y despliegue
 
 Desde la raíz del repositorio (`C:\Repos\Dev\ogathon`), ejecuta los siguientes comandos:
 
@@ -126,23 +315,11 @@ docker run -d -p 8080:8080 --env ASPNETCORE_HTTP_PORTS=8080 --name ogathon-chall
 
 ---
 
-Perfecto, aquí tienes el bloque final en **Markdown** con formato amigable y emojis para resaltar la información clave:
-
----
-
-## 🧪 4. Evaluación
-
-### 🎯 Objetivo específico
-
-Se solicita calcular el **número de patrones distintos** cuando la **distancia es igual a 91**.
-
----
-
-## 🏁 5. Puntuación
+## 🏁 Puntuación
 
 La puntuación total de los **retos de desarrollo** será de **100 puntos**, distribuidos del siguiente modo:
 
-### 🧠 Reto 1 – Predicción de propagación vírica (máx. 24 puntos)
+### 🧠 Cada reto (máx. 24 puntos)
 
 | 📌 Criterio                      | 💯 Puntos |
 |---------------------------------|-----------|
